@@ -1,0 +1,50 @@
+Q：输入三个整数，输出最大数和最小数。
+
+A：int a,b,c,max,min;
+   printf("input three numbers: ");
+   scanf("%d%d%d",&a,&b,&c);
+   if(a>b)
+   {max=a;min=b;}
+   else
+   {max=b;min=a;}
+   if(max<c)
+   max=c;
+   else
+   if(min>c)
+   min=c;
+   printf("max=%d\nmin=%d",max,min);  
+   
+   
+Q： 用户输入运算数和四则运算符，输出计算结果。
+
+A：float a,b;
+   char c;
+   printf("input expression: a+(-,*,/)b \n");
+   scanf("%f%c%f",&a,&c,&b);
+   switch(c){
+   case '+': printf("%f\n",a+b);break;
+   case '-': printf("%f\n",a-b);break;
+   case '*': printf("%f\n",a*b);break;
+   case '/': printf("%f\n",a/b);break;
+   default: printf("input error\n");
+   
+   
+   
+   
+  分支结构的特点就是输入的数据可以分两种以上的情况进行处理，然后每种情况分别得出结果。算法的难点是怎么去分情况。
+  C语言提供了几种方式：
+  1.if（控制语句）  //控制
+    表达式1；
+    else
+    表达式2；
+    
+    容易出现问题的地方就是嵌套。
+    这个还会引出条件运算符。
+    
+  2.switch(表达式){
+     case 常量表达式 1: 语句 1;    //运行方法是将表达式和下面的常量表达式一一对比，相同就执行后面的语句，不同就下一条。
+     case 常量表达式 2: 语句 2;
+     …
+     case 常量表达式 n: 语句 n;
+     default : 语句 n+1;
+    }
