@@ -1,0 +1,27 @@
+//这里写的所有程序都是main()里面的部分。
+1. Q: 输入三角形的三边长，求三角形面积：
+
+A: float a,b,c,s,area;
+   scanf(“%f,%f,%f”,&a,&b,&c);
+   s=1.0/2*(a+b+c);
+   area=sqrt(s*(s-a)*(s-b)*(s-c));
+   printf(“a=%7.2f,b=%7.2f,c=%7.2f,s=%7.2f\n”,a,b,c,s);
+   printf(“area=%7.2f\n”,area);
+
+
+2. Q: 求ax 2 +bx+c=0 方程的根，a,b,c由键盘输入，设b 2 -4ac>0。
+   A：float a,b,c,disc,x1,x2,p,q;
+      scanf(“a=%f,b=%f,c=%f”,&a,&b,&c);
+      disc=b*b-4*a*c;
+      p=-b/(2*a);
+      q=sqrt(disc)/(2*a);
+      x1=p+q;x2=p-q;
+      printf(“\nx1=%5.2f\nx2=%5.2f\n”,x1,x2);
+
+
+
+通过上面的例子发现，顺序结构就是按着步骤执行一次就可以达到的函数构造结构，是最简单的函数类型。
+许多物理，数学公式我们都可以构造这样的计算器，通过输入就可以输出。
+
+
+
