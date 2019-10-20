@@ -5,5 +5,63 @@
 解法1：罗列所有三位数，然后按条件筛选显示。
 当然，这是一个循环打印的过程。
 
+#include<stdio.h> 
+int main()
+{
+	int a=0,b=0,c=0;
+	int x,y,z;
+    for(x=0;x<4;x++) 
+    {
+    	a=a+1;
+      for(y=0;y<4;y++)
+      {
+      	b=b+1;
+        for(z=0;z<4;z++) //循环执行罗列所有可能的值的循环 
+        {
+        	c=c+1;
+        	if(a!=b)     // 判断abc不相等的方式，有没有更好的办法呢？
+        	  if(a!=c)
+        	    if(b!=c)
+        	      printf("%d %d %d\n",a,b,c);  
+		}
+        c=0;     //初始化C 
+       
+	  }
+	    b=0;     //初始化b
+      
+	}
+    return 0;
+}
+
+
 
 解法2：从算法上避免重复的数字出现，然后打印所有
+也就是假设第一位是1，第二位就只能是2，3，4，第三位只能更少，如何进行这个判断呢?由于不知道循环的执行次数，那就只能用while循环,由于有分支，还要用Do while
+然后循环罗列打印。下面的代码是有问题的。
+
+#include<stdio.h> 
+int main()
+{
+	int a=0,b=0,c=0;
+	int x;
+    for(x=0;x<3;x++)
+    {
+    	a=a+1;
+    loop: do
+     {
+     	b=b+1;
+	 }
+     while(b=a);
+       do
+       {
+       	c=c+1;
+	   }
+       while(c=b);
+        if(c!=a)
+         printf("%d %d %d",a,b,c);   //a=1, b=1 b=a b=2 b=a c=1 c=b  b=3 c=2 
+    goto loop;
+	}
+     
+      
+    return 0;
+}
