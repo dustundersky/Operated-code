@@ -1,1 +1,96 @@
 输入某年某月某日，判断这一天是这一年的第几天？
+
+1.问题分析
+
+首先输入有三个变量：年月日的格式呈现，然后对应天。
+已知不同的年份天数可能不一样，首先就是要做出这个公式，变化就在2月份；
+普通年:能被4整除但不能被100整除的年份为普通闰年。（如2004年就是闰年，1999年不是闰年）；
+世纪年:能被400整除的为世纪闰年。（如2000年是闰年，1900年不是闰年）；
+平年就是除了闰年以外的年份都是平年。
+由年判断总天数，根据上面就是判断是平年还是闰年。
+
+然后再又月日计算天数；
+
+2.代码
+#include<stdio.h>
+int main()
+{
+   int yer,moth,day,b;
+   printf("请按年月日的顺序输入日期：");
+   scanf("%d %d %d",&yer,&moth,&day);
+   printf("%d %d %d",yer,moth,day); 
+   if(yer%4==0&&yer%100!=0) 
+    switch(moth%12)
+    {
+	 case 1: b=day;break;
+    case 2: b=31+day;break;
+    case 3: b=59+day;break;
+    case 4: b=90+day;break;
+    case 5: b=120+day;break;
+    case 6: b=151+day;break;
+    case 7: b=181+day;break;
+    case 8: b=212+day;break;
+    case 9: b=242+day;break;
+    case 10:b=273+day;break;
+    case 11:b=303+day;break;
+    case 0: b=334+day;break;
+	} 
+    
+   else
+     switch(moth%12)
+     {
+	     case 1: b=day;break;
+    case 2: b=31+day;break;
+    case 3: b=58+day;break;
+    case 4: b=89+day;break;
+    case 5: b=119+day;break;
+    case 6: b=150+day;break;
+    case 7: b=180+day;break;
+    case 8: b=211+day;break;
+    case 9: b=241+day;break;
+    case 10:b=272+day;break;
+    case 11:b=302+day;break;
+    case 0: b=333+day; break;
+	 } 
+
+  printf("这是 %d 年的 %d 天",yer,b);
+	return 0;
+ } 
+ //太过于繁琐，重复
+ 
+ 
+ 下面看标准答案：
+ #include <stdio.h>
+int main()
+{
+    int day,month,year,sum,leap;
+    printf("\n请输入年、月、日，格式为：年,月,日（2015,12,10）\n");
+    scanf("%d,%d,%d",&year,&month,&day);  // 格式为：2015,12,10
+    switch(month) // 先计算某月以前月份的总天数   ，根本不需要我上面多此一举。。。
+    {
+        case 1:sum=0;break;
+        case 2:sum=31;break;
+        case 3:sum=59;break;
+        case 4:sum=90;break;
+        case 5:sum=120;break;
+        case 6:sum=151;break;
+        case 7:sum=181;break;
+        case 8:sum=212;break;
+        case 9:sum=243;break;
+        case 10:sum=273;break;
+        case 11:sum=304;break;
+        case 12:sum=334;break;
+        default:printf("data error");break;
+    }
+    sum=sum+day; // 再加上某天的天数
+    if(year%400==0||(year%4==0&&year%100!=0)) {// 判断是不是闰年    //闰年和平年的区别就是2月份过后加一天。。。
+        leap=1;
+    } else {
+       leap=0;
+    }
+    if(leap==1&&month>2) { // *如果是闰年且月份大于2,总天数应该加一天
+        sum++;
+    }
+    printf("这是这一年的第 %d 天。",sum);
+    printf("\n");
+}
