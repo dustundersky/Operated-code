@@ -1,1 +1,56 @@
 输入三个整数x,y,z，请把这三个数由小到大输出。
+
+1.问题分析
+
+排序问题，
+办法1：两两比较，如果x>y，那么判断y>z.....
+
+#include<stdio.h>
+int main()
+{
+	int x,y,z,b;
+	printf("请输入三个整数： ");
+	scanf("%d %d %d",&x,&y,&z);
+	if(x>y)
+	{
+		if(y>z)
+	   printf("从小到大为：%d %d %d",z,y,x);
+	   else if(x>z)
+	   printf("从小到大为：%d %d %d",y,z,x);
+	        else
+	        printf("从小到大为：%d %d %d",y,x,z);
+	}
+	else 
+	{
+	b=x; //这里做了交换就跟上面一样了。
+	x=y;
+	y=b;
+	if(y>z)
+	   printf("从小到大为：%d %d %d",x,y,z);
+	   else if(x>z)
+	   printf("从小到大为：%d %d %d",y,z,x);
+	        else
+	        printf("从小到大为：%d %d %d",y,x,z);
+	}
+	    
+	return 0;
+ } 
+ 
+ 但是最简单的写法应该是在地址中直接交换值，这样可以统一printf函数，不会像上面有3条。也就是规定x>y>z，输入如果达不到就交换值。
+ #include<stdio.h>
+int main()
+{
+  int x,y,z,b;
+	printf("请输入三个整数： ");
+	scanf("%d %d %d",&x,&y,&z);
+  if(x>y)
+  b=x,x=y,y=b; //如果x大，就交换xy的值,这样y就大，x<y
+  if(y>z)      //再跟z比较
+  b=y,y=z,z=b;  //     x y 最大为 z
+  if(x>y)
+  {
+  b=x,x=y;y=b;
+  } 
+  printf("%d %d %d",x,y,z);
+ return 0;
+ }
